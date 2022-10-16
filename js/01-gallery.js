@@ -23,20 +23,24 @@ function createImagesMarkup (galleryItems) {
   }).join('');
 }
 
+galleryContainer.innerHTML = cardsMarkup;
 
 galleryContainer.addEventListener('click', onPictureClick);
 
-function onPictureClick(event) {
-    event.preventDefault();
+function onPictureClick(evt) {
+    evt.preventDefault();
 
-    if (!event.target.classList.contains('gallery__image')) {
+    if (!evt.target.classList.contains('gallery__image'))
         return;
-  };
   
-  let modalWindow;
-
-    modalWindow = basicLightbox.create(`
-<img src = "${event.target.dataset.source}">`);
+  const modalWindow = basicLightbox.create(`
+<img src="${evt.target.dataset.source}">`);
   
-    modalWindow.show();
+  modalWindow.show();
+  
+  galleryContainer.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      modalWindow.close()
+    }
+  })
 }
