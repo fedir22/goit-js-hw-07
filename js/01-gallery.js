@@ -23,7 +23,7 @@ function createImagesMarkup (galleryItems) {
   }).join('');
 }
 
-let modalWindow;
+
 galleryContainer.addEventListener('click', onPictureClick);
 
 function onPictureClick(event) {
@@ -31,9 +31,12 @@ function onPictureClick(event) {
 
     if (!event.target.classList.contains('gallery__image')) {
         return;
-    }
+  };
+  
+  let modalWindow;
 
     modalWindow = basicLightbox.create(`
 <img src = "${event.target.dataset.source}">`);
-    modalWindow.show(onPictureClick);
+  
+    modalWindow.show();
 }
